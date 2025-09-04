@@ -8,7 +8,7 @@ function mt:add(score, member, ts)
         if old == score then
             return
         end
-        self.sl:delete(old, member, old)
+        self.sl:delete(old, member)
     end
 
     self.sl:insert(score, member, ts)
@@ -19,7 +19,7 @@ end
 function mt:rem(member)
     local score = self.tbl[member]
     if score then
-        self.sl:delete(score, member, self.ts[member])
+        self.sl:delete(score, member)
         self.tbl[member] = nil
         self.ts[member] = nil
     end

@@ -175,7 +175,10 @@ int slDelete(skiplist *sl, double score, slobj *obj, double timestamp) {
 
     x = sl->header;
     for (i = sl->level-1; i >= 0; i--) {
-        while (x->level[i].forward && compare(x->level[i].forward, score, obj, timestamp) < 0)
+        while (x->level[i].forward &&
+            (x->level[i].forward->score < score ||
+                (x->level[i].forward->score == score &&
+                compareslObj(x->level[i].forward->obj,obj) < 0)))
             x = x->level[i].forward;
         update[i] = x;
     }
