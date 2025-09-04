@@ -8,7 +8,7 @@ function mt:add(score, member, ts)
         if old == score then
             return
         end
-        self.sl:delete(old, member)
+        self.sl:delete(old, member, old)
     end
 
     self.sl:insert(score, member, ts)
